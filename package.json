@@ -1,7 +1,7 @@
 {
   "name": "transparent-fx-cot",
-  "version": "1.0.0",
-  "description": "This extension will show a user the current commitment of non-commercial traders depending on what currency pair they are viewing inside of the tradingview platform.",
+  "version": "0.0.1",
+  "description": "This extension will show a user the current commitment of non-commercial traders",
   "author": "Jacques Beets",
   "engines": {
     "node": ">=10"
@@ -13,7 +13,8 @@
     "build:dev": "cross-env NODE_ENV=development webpack --hide-modules",
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
-    "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
+    "watch:dev": "cross-env HMR=true npm run build:dev -- --watch",
+    "build:deploy": "cross-env NODE_ENV=production webpack --hide-modules"
   },
   "dependencies": {
     "axios": "^0.19.0",
