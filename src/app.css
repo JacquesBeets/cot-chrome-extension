@@ -1,0 +1,145 @@
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#transparentfxCOT {
+  position: absolute;
+  bottom: 30px;
+  /* right: 70px; */
+  color: #f5f5f5;
+  transition: all 0.1s ease;
+  
+}
+
+select#financialsShort{
+  background-color: rgba(61, 155, 232, 1);
+  margin-right: auto ;
+  border: none;
+}
+
+#transparentfxCOT{
+  box-shadow: 0 1em 2em rgba(0,0,0,0.3);
+}
+
+#transparentfxCOT .logo {
+  border: 3px solid rgba(61, 155, 232, 0.96);
+  border-radius: 5%;
+  background-color: #000;
+  font-size: 50%;
+  padding: 1em;
+}
+
+#transparentfxCOT .logo:hover {
+  cursor: pointer;
+}
+
+#transparentfxCOT .logo div {
+  font-size: 150%;
+  line-height: 1.2;
+  border-bottom: 2px solid rgba(61, 155, 232, 1);
+  margin-bottom: .25em;
+}
+
+#transparentfxCOT .logo .bottom{
+  margin-top: .5em;
+}
+
+#transparentfxCOT.open {
+  height: calc(100% - 39px);
+}
+
+#mainApp {
+  width: 400px;
+  height: 100%;
+  /* border: 3px solid rgba(61,155,232,1); */
+  background-color: #fff;
+  color: #000;
+  overflow: auto;
+}
+
+#mainApp .header {
+  background-color: rgba(61, 155, 232, 1);
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#mainApp .header {
+  background: rgba(61, 155, 232, 1);
+}
+
+#mainApp .header .compName div{
+  margin-bottom: 0;
+}
+
+#mainApp .header .compName span{
+  font-size: 64%;
+  margin-top: -4px;
+}
+
+#mainApp .header .close:hover {
+  cursor: pointer;
+}
+
+#mainApp table {
+  text-align: center;
+  margin-top: 46px;
+}
+
+#mainApp th {
+  background-color: rgba(61, 155, 232, 1);
+  padding: .25em .5em;
+}
+
+#mainApp td{
+  padding: .25em .5em;
+}
+
+#mainApp .short small,
+#mainApp .long small,
+th small {
+  display: block;
+}
+
+#mainApp .date{
+  text-align: left;
+}
+
+#mainApp .long,
+#mainApp .short,
+#mainApp .net{
+  text-align: right;
+}
+
+#mainApp .tableBody tr:nth-child(even) .date{
+  background-color: #fff;
+}

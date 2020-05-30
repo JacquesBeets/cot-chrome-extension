@@ -1,0 +1,30 @@
+{
+  "name": "transparent-fx-cot",
+  "description": "This extension will show a user the current commitment of non-commercial traders depending on what currency pair they are viewing inside of the tradingview platform.",
+  "version": null,
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icons/logoRound.png",
+    "default_title": "transparent-fx-cot",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts":[
+    {
+        "matches": [
+            "https://www.tradingview.com/chart/*"
+        ],
+        "js": ["content.js"],
+        "css": ["app.css"],
+        "all_frames": true,
+        "run_at": "document_idle"
+    }
+]
+}
