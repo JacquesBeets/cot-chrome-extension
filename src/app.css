@@ -1,4 +1,3 @@
-
 *,
 *:before,
 *:after {
@@ -32,17 +31,16 @@
   /* right: 70px; */
   color: #f5f5f5;
   transition: all 0.1s ease;
-  
 }
 
-select#financialsShort{
+select#financialsShort {
   background-color: rgba(61, 155, 232, 1);
-  margin-right: auto ;
+  margin-right: auto;
   border: none;
 }
 
-#transparentfxCOT{
-  box-shadow: 0 1em 2em rgba(0,0,0,0.3);
+#transparentfxCOT {
+  box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
 }
 
 #transparentfxCOT .logo {
@@ -61,27 +59,73 @@ select#financialsShort{
   font-size: 150%;
   line-height: 1.2;
   border-bottom: 2px solid rgba(61, 155, 232, 1);
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
 }
 
-#transparentfxCOT .logo .bottom{
-  margin-top: .5em;
+#transparentfxCOT .logo .bottom {
+  margin-top: 0.5em;
 }
 
 #transparentfxCOT.open {
-  height: calc(100% - 39px);
+  height: calc(100% - 30px);
+  width: inherit;
+  background: #f5f5f5;
+  z-index: 10;
+}
+
+#transparentfxCOT.open .tspfx-wrapper {
+  max-width: 1000px;
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  /* overflow-y: scroll; */
+  height: 100%;
+}
+
+#transparentfxCOT .tableHeader{
+  display: none;
+}
+
+#transparentfxCOT.open .tableHeader{
+  position: relative;
+  display: block;
+  z-index: 11;
+  color: #000;
+  padding-right: 2px;
+}
+
+#transparentfxCOT.open .tableHeader table{
+  width: 100%;
+}
+
+#transparentfxCOT.open .tableHeader th{
+  text-align: right;
+    padding: 1em .5em;
+    /* border-right: 1px solid #e5e5e5; */
+}
+
+#transparentfxCOT.open .tableHeader th.date{
+  text-align: left;
+  /* border-left: 1px solid #e5e5e5; */
 }
 
 #mainApp {
-  width: 400px;
+  width: inherit;
+  z-index: 10;
+  position: relative;
   height: 100%;
   /* border: 3px solid rgba(61,155,232,1); */
   background-color: #fff;
   color: #000;
-  overflow: auto;
+  overflow: hidden;
+    overflow-y: scroll;
 }
 
-#mainApp .header {
+#transparentfxCOT .header{
+  display: none;
+}
+
+#transparentfxCOT.open .header {
   background-color: rgba(61, 155, 232, 1);
   padding: 1em;
   display: flex;
@@ -91,37 +135,42 @@ select#financialsShort{
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 11;
 }
 
-#mainApp .header {
+#transparentfxCOT.open .header {
   background: rgba(61, 155, 232, 1);
+  color: #000;
 }
 
-#mainApp .header .compName div{
+#transparentfxCOT.open .header .compName div {
   margin-bottom: 0;
 }
 
-#mainApp .header .compName span{
+#transparentfxCOT.open .header .compName span {
   font-size: 64%;
   margin-top: -4px;
 }
 
-#mainApp .header .close:hover {
+#transparentfxCOT.open .header .close:hover {
   cursor: pointer;
 }
 
 #mainApp table {
   text-align: center;
-  margin-top: 46px;
+  margin-top: 0;
+  margin-bottom: 44px;
 }
 
 #mainApp th {
   background-color: rgba(61, 155, 232, 1);
-  padding: .25em .5em;
+  padding: 1em 0.5em 1em 0.2em;
 }
 
-#mainApp td{
-  padding: .25em .5em;
+#mainApp td {
+  padding: 1em 0.5em 1em 0.2em;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
 }
 
 #mainApp .short small,
@@ -130,16 +179,20 @@ th small {
   display: block;
 }
 
-#mainApp .date{
+#mainApp .date {
   text-align: left;
+  padding-left: 0.25em;
+  border-left: 1px solid #e5e5e5;
 }
 
 #mainApp .long,
 #mainApp .short,
-#mainApp .net{
+#mainApp .net,
+#mainApp .change {
   text-align: right;
 }
 
-#mainApp .tableBody tr:nth-child(even) .date{
+#mainApp .tableBody tr:nth-child(even) .date,
+#mainApp .tableBody tr:nth-child(even) .change {
   background-color: #fff;
 }

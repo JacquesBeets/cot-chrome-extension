@@ -1,62 +1,68 @@
 <template>
   <div id="transparentfxCOT" :class="{open: open}">
-    <div @click="openCloseTable" v-show="!open && !loading" class="logo">
-      <div>TRANSPARENT FX</div>
-      <span class="bottom">COMMITMENT OF TRADERS</span>
-    </div>
-    <div id="mainApp" v-show="open">
-      <div class="header">
-        <div class="compName">
-          <div>TRANSPARENT FX -</div>
-        </div>
-        <select name="financialsShort" id="financialsShort" v-model="selectedFinancial">
-          <option v-for="item in quickCurrencySelect" :value="item.id" :key="item.id">{{item.value}}</option>
-        </select>
-        <span class="close" @click="openCloseTable">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13">
-            <path
-              fill="currentColor"
-              d="M5.18 6.6L1.3 2.7.6 2 2 .59l.7.7 3.9 3.9 3.89-3.9.7-.7L12.61 2l-.71.7L8 6.6l3.89 3.89.7.7-1.4 1.42-.71-.71L6.58 8 2.72 11.9l-.71.7-1.41-1.4.7-.71 3.9-3.9z"
-            />
-          </svg>
-        </span>
+    <div class="header">
+      <div class="compName">
+        <div>TRANSPARENT FX -</div>
       </div>
-      <table style="width:100%">
-        <tr>
-          <th class="date">
-            <small>&nbsp;</small>
-            Date
-          </th>
-          <th class="long">
-            <small>Change Long</small>Long
-          </th>
-          <th class="short">
-            <small>Change Short</small>Short
-          </th>
-          <th class="net" width="25%">
-            <small>&nbsp;</small>
-            Net Position
-          </th>
-        </tr>
-        <tbody class="tableBody">
-          <tr
-            v-for="(item, index) in tableObject"
-            :key="item.as_of_date_in_form_yymmdd"
-            style="background-color:#f5f5f5;"
-          >
-            <td class="date">{{formatDate(item.report_date_as_mm_dd_yyyy)}}</td>
-            <td class="long" :style="item.longColor">
-              <small>{{ formatNumber(prevLong(index)) }}</small>
-              {{formatNumber(item.noncomm_positions_long_all)}}
-            </td>
-            <td class="short" :style="item.shortColor">
-              <small>{{ formatNumber(prevShort(index)) }}</small>
-              {{formatNumber(item.noncomm_positions_short_all)}}
-            </td>
-            <td class="net" :style="item.netColor">{{ formatNumber(item.netPosition) }}</td>
+      <select name="financialsShort" id="financialsShort" v-model="selectedFinancial">
+        <option v-for="item in quickCurrencySelect" :value="item.id" :key="item.id">{{item.value}}</option>
+      </select>
+      <span class="close" @click="openCloseTable">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13">
+          <path
+            fill="currentColor"
+            d="M5.18 6.6L1.3 2.7.6 2 2 .59l.7.7 3.9 3.9 3.89-3.9.7-.7L12.61 2l-.71.7L8 6.6l3.89 3.89.7.7-1.4 1.42-.71-.71L6.58 8 2.72 11.9l-.71.7-1.41-1.4.7-.71 3.9-3.9z"
+          />
+        </svg>
+      </span>
+    </div>
+    <div class="tspfx-wrapper">
+      <div @click="openCloseTable" v-show="!open && !loading" class="logo">
+        <div>TRANSPARENT FX</div>
+        <span class="bottom">COMMITMENT OF TRADERS</span>
+      </div>
+      <div class="tableHeader">
+        <table>
+          <tr>
+            <th width="11%" class="date">Date</th>
+            <th width="10%" class="long">Long</th>
+            <th width="10%" class="short">Short</th>
+            <th width="10%" class="long">Change Long</th>
+            <th width="10%" class="short">Change Short</th>
+            <th width="10%" class="long">% Long</th>
+            <th width="10%" class="short">% Short</th>
+            <th class="net" width="10%">Net Position</th>
           </tr>
-        </tbody>
-      </table>
+        </table>
+      </div>
+      <div id="mainApp" v-show="open">
+        <table style="width:100%">
+          <tbody class="tableBody">
+            <tr
+              v-for="(item, index) in tableObject"
+              :key="item.as_of_date_in_form_yymmdd"
+              style="background-color:#f5f5f5;"
+            >
+              <td class="date" width="11%" >{{formatDate(item.report_date_as_mm_dd_yyyy)}}</td>
+              <td
+              width="10%"
+                class="long"
+                :style="item.longColor"
+              >{{formatNumber(item.noncomm_positions_long_all)}}</td>
+              <td
+              width="10%"
+                class="short"
+                :style="item.shortColor"
+              >{{formatNumber(item.noncomm_positions_short_all)}}</td>
+              <td width="10%" class="change">{{ formatNumber(prevLong(index)) }}</td>
+              <td width="10%" class="change">{{ formatNumber(prevShort(index)) }}</td>
+              <td width="10%" class="change">{{ item.pct_of_oi_noncomm_long_all + " %"}}</td>
+              <td width="10%" class="change">{{ item.pct_of_oi_noncomm_short_all + " %" }}</td>
+              <td width="10%" class="net" :style="item.netColor">{{ formatNumber(item.netPosition) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -69,14 +75,14 @@ export default {
     this.fetchData();
     let mainAppContainer = document.getElementById("mainApp");
 
-    let rightScroll = document.querySelector(".price-axis")
-    let cotContainer = document.getElementById("transparentfxCOT")
+    let rightScroll = document.querySelector(".price-axis");
+    let cotContainer = document.getElementById("transparentfxCOT");
 
-    function outputSize(){
-      cotContainer.style.right = rightScroll.offsetWidth + 5 + "px"
+    function outputSize() {
+      cotContainer.style.right = rightScroll.offsetWidth + 5 + "px";
     }
 
-    new ResizeObserver(outputSize).observe(rightScroll)
+    new ResizeObserver(outputSize).observe(rightScroll);
   },
   data() {
     return {
@@ -121,6 +127,14 @@ export default {
   methods: {
     openCloseTable() {
       this.open = !this.open;
+
+      let rightScroll = document.querySelector(".price-axis");
+      let cotContainer = document.getElementById("transparentfxCOT");
+      if (this.open) {
+        cotContainer.style.right = 0 + "px";
+      } else {
+        cotContainer.style.right = rightScroll.offsetWidth + 5 + "px";
+      }
     },
     fetchData() {
       this.loading = true;
@@ -375,6 +389,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
