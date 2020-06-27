@@ -70,10 +70,11 @@ select#financialsShort{
 
 #transparentfxCOT.open {
   height: calc(100% - 39px);
+  z-index: 11;
 }
 
 #mainApp {
-  width: 400px;
+  width: 850px;
   height: 100%;
   /* border: 3px solid rgba(61,155,232,1); */
   background-color: #fff;
@@ -118,10 +119,13 @@ select#financialsShort{
 #mainApp th {
   background-color: rgba(61, 155, 232, 1);
   padding: .25em .5em;
+  text-align: right;
 }
 
 #mainApp td{
-  padding: .25em .5em;
+  padding: 0.50em 0.5em;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
 }
 
 #mainApp .short small,
@@ -140,6 +144,11 @@ th small {
   text-align: right;
 }
 
-#mainApp .tableBody tr:nth-child(even) .date{
+#mainApp .change{
+  text-align: right;
+}
+
+#mainApp .tableBody tr:nth-child(even) .date,
+#mainApp .tableBody tr:nth-child(even) .change{
   background-color: #fff;
 }

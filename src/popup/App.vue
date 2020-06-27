@@ -23,20 +23,14 @@
       </div>
       <table style="width:100%">
         <tr>
-          <th class="date">
-            <small>&nbsp;</small>
-            Date
-          </th>
-          <th class="long">
-            <small>Change Long</small>Long
-          </th>
-          <th class="short">
-            <small>Change Short</small>Short
-          </th>
-          <th class="net" width="25%">
-            <small>&nbsp;</small>
-            Net Position
-          </th>
+          <th width="10%" class="date">Date</th>
+          <th width="10%" class="long">Long</th>
+          <th width="10%" class="short">Short</th>
+          <th width="10%" class="changeHead">Change Long</th>
+          <th width="10%" class="changeHead">Change Short</th>
+          <th width="10%" class="changeHead">Long %</th>
+          <th width="10%" class="changeHead">Short %</th>
+          <th width="13%" class="net">Net Position</th>
         </tr>
         <tbody class="tableBody">
           <tr
@@ -45,14 +39,18 @@
             style="background-color:#f5f5f5;"
           >
             <td class="date">{{formatDate(item.report_date_as_mm_dd_yyyy)}}</td>
-            <td class="long" :style="item.longColor">
-              <small>{{ formatNumber(prevLong(index)) }}</small>
-              {{formatNumber(item.noncomm_positions_long_all)}}
-            </td>
-            <td class="short" :style="item.shortColor">
-              <small>{{ formatNumber(prevShort(index)) }}</small>
-              {{formatNumber(item.noncomm_positions_short_all)}}
-            </td>
+            <td
+              class="long"
+              :style="item.longColor"
+            >{{formatNumber(item.noncomm_positions_long_all)}}</td>
+            <td
+              class="short"
+              :style="item.shortColor"
+            >{{formatNumber(item.noncomm_positions_short_all)}}</td>
+            <td class="change">{{ formatNumber(prevLong(index)) }}</td>
+            <td class="change" >{{ formatNumber(prevShort(index)) }}</td>
+            <td class="change">{{item.pct_of_oi_noncomm_long_all}}</td>
+            <td class="change" >{{item.pct_of_oi_noncomm_short_all}}</td>
             <td class="net" :style="item.netColor">{{ formatNumber(item.netPosition) }}</td>
           </tr>
         </tbody>
@@ -69,14 +67,14 @@ export default {
     this.fetchData();
     let mainAppContainer = document.getElementById("mainApp");
 
-    let rightScroll = document.querySelector(".price-axis")
-    let cotContainer = document.getElementById("transparentfxCOT")
+    let rightScroll = document.querySelector(".price-axis");
+    let cotContainer = document.getElementById("transparentfxCOT");
 
-    function outputSize(){
-      cotContainer.style.right = rightScroll.offsetWidth + 5 + "px"
+    function outputSize() {
+      cotContainer.style.right = rightScroll.offsetWidth + 5 + "px";
     }
 
-    new ResizeObserver(outputSize).observe(rightScroll)
+    new ResizeObserver(outputSize).observe(rightScroll);
   },
   data() {
     return {
