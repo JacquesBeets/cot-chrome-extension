@@ -21,7 +21,7 @@
           </svg>
         </span>
       </div>
-      <table style="width:100%">
+      <table style="width:99.99%">
         <tr>
           <th width="10%" class="date">Date</th>
           <th width="10%" class="long">Long</th>
