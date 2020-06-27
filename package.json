@@ -1,6 +1,6 @@
 {
   "name": "transparent-fx-cot",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "This extension will show a user the current commitment of non-commercial traders",
   "author": "Jacques Beets",
   "engines": {
